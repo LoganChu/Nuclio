@@ -1,0 +1,16 @@
+metadata:
+  name: segmenter
+spec:
+  runtime: python:3.9
+  handler: handler:handler
+  description: Local segmentation model
+  build:
+    commands:
+      - pip install torch torchvision opencv-python
+    artifacts:
+      - targetPath: /opt/nuclio/model.pth
+        source: model.pth
+  resources:
+    limits:
+      cpu: "2"
+      memory: "2Gi"
